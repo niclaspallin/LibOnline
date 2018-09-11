@@ -1,0 +1,19 @@
+﻿@page
+@model LibOnline.Pages.Borrowers.DeleteModel
+
+@{
+    ViewData["Title"] = "Radera";
+}
+
+<div>
+<h3>Bekräfta radering utav låntagare: @Html.DisplayFor(model => model.Borrower.FullName)</h3>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Borrower.ID" />
+        <input type="submit" value="Radera" class="btn btn-danger" />
+    </form>
+    <hr />
+    <p>
+        <a asp-page="./Index">Listvy</a>
+    </p>
+</div>

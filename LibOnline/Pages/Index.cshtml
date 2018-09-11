@@ -1,0 +1,14 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Hem";
+}
+
+
+<div class="row">
+    <h3>
+        Välkommen till Online-Bibblan
+    </h3>
+    <hr />
+    @await Html.PartialAsync("_SearchForm", new ViewDataDictionary(this.ViewData))
+</div>

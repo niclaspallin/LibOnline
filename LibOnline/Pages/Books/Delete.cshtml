@@ -1,0 +1,33 @@
+﻿@page
+@model LibOnline.Pages.Books.DeleteModel
+
+@{
+    ViewData["Title"] = "Radera";
+}
+
+<div>
+    <h3>Bekräfta radering utav bok</h3>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.Author)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Book.ID" />
+        <input type="submit" value="Radera" class="btn btn-danger" />
+    </form>
+    <hr />
+    <p>
+        <a asp-page="./Index">Listvy</a>
+    </p>
+</div>

@@ -1,0 +1,71 @@
+﻿@page
+@model LibOnline.Pages.Books.IndexModel
+
+@{
+    ViewData["Title"] = "Böcker";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+@await Html.PartialAsync("_SearchForm", this.ViewData)
+
+@if (!String.IsNullOrEmpty(@Model.SearchText))
+{
+    <a href="./Books/Index" style="margin-left: 1rem;">Återställ filter</a>
+}
+
+<hr />
+
+<p>
+    <a asp-page="Create">Lägg till</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].ReturnDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].Borrower)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].IsBorrowed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Books)
+        {
+        <tr>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.Title)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                <a asp-page="/Borrowers/Details" asp-route-id="@item.BorrowerID">
+                    @Html.DisplayFor(modelItem => item.Borrower.FullName)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsBorrowed)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Ändra</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Radera</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

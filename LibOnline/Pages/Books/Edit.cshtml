@@ -1,0 +1,53 @@
+﻿@page
+@model LibOnline.Pages.Books.EditModel
+
+@{
+    ViewData["Title"] = "Ändra";
+}
+
+<h3>Redigerar @Model.Book.Title</h3>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Book.ID" />
+            <div class="form-group">
+                <label asp-for="Book.Title" class="control-label"></label>
+                <input asp-for="Book.Title" class="form-control" />
+                <span asp-validation-for="Book.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Book.ReturnDate" class="control-label"></label>
+                <input asp-for="Book.ReturnDate" class="form-control" />
+                <span asp-validation-for="Book.ReturnDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Book.Author" class="control-label"></label>
+                <input asp-for="Book.Author" class="form-control" />
+                <span asp-validation-for="Book.Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Book.Borrower" class="control-label"></label>
+                <select asp-for="Book.BorrowerID" class="form-control"
+                        asp-items="@Model.BorrowerList">
+                    <option value="">-- Välj låntagare --</option>
+                </select>
+                <span asp-validation-for="Book.Borrower" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Spara" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Listvy</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

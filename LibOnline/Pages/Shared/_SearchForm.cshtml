@@ -1,0 +1,23 @@
+﻿@{ 
+    string SearchPlaceholderText = "Sök";
+    string TargetPage = "/";
+
+    if(ViewData["TargetPage"] != null)
+    {
+        TargetPage = ViewData["TargetPage"].ToString();
+    }
+
+    if(ViewData["SearchPlaceholderText"] != null)
+    {
+        SearchPlaceholderText = ViewData["SearchPlaceholderText"].ToString();
+    }
+}
+
+<form method="get" asp-page="@TargetPage">
+    <div class="input-group">
+        <input type="search" name="searchText" class="form-control" placeholder="@SearchPlaceholderText" />
+        <div class="input-group-btn">
+            <input type="submit" value="Sök" class="btn btn-default" />
+        </div>
+    </div>
+</form>

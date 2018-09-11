@@ -1,0 +1,56 @@
+﻿@page
+@model LibOnline.Pages.Borrowers.IndexModel
+
+@{
+    ViewData["Title"] = "Låntagare";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+@await Html.PartialAsync("_SearchForm", new ViewDataDictionary(this.ViewData))
+
+@if (!String.IsNullOrEmpty(@Model.SearchText))
+{
+    <a href="./Borrowers/Index" style="margin-left: 1rem;">Återställ filter</a>
+}
+
+<hr />
+
+<p>
+    <a asp-page="Create">Lägg till</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Borrower[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Borrower[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Borrower[0].Phone)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Borrower)
+        {
+        <tr>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.ID">@Html.DisplayFor(modelItem => item.FullName)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Redigera</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Radera</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

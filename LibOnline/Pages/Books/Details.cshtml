@@ -1,0 +1,45 @@
+﻿@page
+@model LibOnline.Pages.Books.DetailsModel
+
+@{
+    ViewData["Title"] = "Detaljvy";
+}
+
+<h3>@Html.DisplayFor(model => model.Book.Title)</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.Author)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.ReturnDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.ReturnDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.IsBorrowed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Book.IsBorrowed)
+        </dd>
+        @if(Model.Book.IsBorrowed)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Book.Borrower)
+            </dt>
+            <dd>
+                <a asp-page="/Borrowers/Details" asp-route-id="@Model.Book.Borrower.ID">@Html.DisplayFor(model => model.Book.Borrower.FullName)</a>
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Book.ID">Ändra</a> |
+    <a asp-page="./Index">Listvy</a>
+</div>
