@@ -1,6 +1,6 @@
 # LibOnline
 .NET Library application
 
-# Getting started
+## Getting started
 * In NuGet: Update-Database
 * Run Application
